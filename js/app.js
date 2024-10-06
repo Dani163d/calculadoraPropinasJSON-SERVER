@@ -43,9 +43,21 @@ function guardarCliente() {
 
     // mostrar las secciones
     mostrarSecciones();
+
+    // obtener platillo de api de JSON
+    obtenerPlatillo();
 }
 
 function mostrarSecciones() {
     const sesionesOcultas = document.querySelectorAll('.d-none')
     sesionesOcultas.forEach(seccion => seccion.classList.remove('d-none'));
+}
+
+function obtenerPlatillo() {
+    const url = 'http://localhost:4000/platillos';
+
+    fetch(url)
+        .then(respuesta => respuesta.json())
+        .then( resultado => console.log(resultado) )
+        .catch( error => console.log(error));
 }
