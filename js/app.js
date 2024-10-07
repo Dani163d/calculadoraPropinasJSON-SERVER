@@ -215,15 +215,26 @@ function actualizarResumen() {
         precioValor.classList.add('fw-normal');
         precioValor.textContent = `$${precio}`;
 
+        // subtotal del articulo
+        const subtotalEl = document.createElement('P');
+        subtotalEl.classList.add('fw-bold');
+        subtotalEl.textContent = 'Subtotal: ';
+
+        const subtotalValor = document.createElement('SPAN');
+        subtotalValor.classList.add('fw-normal');
+        subtotalValor.textContent = calcularSubtotal(precio,  cantidad);
+
         // agregar valores a sus contenedores
         cantidadEl.appendChild(cantidadValor);
         precioEl.appendChild(precioValor);
+        subtotalEl.appendChild(subtotalValor);
 
 
         // agregar elemntos al LI
         lista.appendChild(nombreEl);
         lista.appendChild(cantidadEl);
         lista.appendChild(precioEl);
+        lista.appendChild(subtotalEl);
 
 
         // Agregar lista al grupo principal
@@ -246,4 +257,8 @@ function limpiarHTML() {
     while (contenido.firstChild) {
         contenido.removeChild(contenido.firstChild);
     }
+}
+
+function calcularSubtotal(precio, cantidad) {
+    return `$${precio * cantidad}`;
 }
